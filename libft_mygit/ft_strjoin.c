@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchernyu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/30 15:36:54 by mchernyu          #+#    #+#             */
-/*   Updated: 2021/10/19 19:49:41 by mchernyu         ###   ########.fr       */
+/*   Created: 2021/10/07 19:44:48 by mchernyu          #+#    #+#             */
+/*   Updated: 2021/10/13 18:27:07 by mchernyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
+	char	*result;
+	int		i;
+	int		j;
 
 	i = 0;
-	while (s1[i] != '\0' && s2[i] != '\0' && i < n)
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	result = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!result)
+		return (NULL);
+	while (s1[i])
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		else
-			i++;
+		result[i] = s1[i];
+		i++;
 	}
-	if (n > i)
-		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-	return (0);
+	while (s2[j])
+	{
+		result[i] = s2[j];
+		i++;
+		j++;
+	}
+	result[i] = '\0';
+	return (result);
 }

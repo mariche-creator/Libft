@@ -6,11 +6,11 @@
 /*   By: mchernyu <mchernyu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 06:30:24 by mchernyu          #+#    #+#             */
-/*   Updated: 2021/09/29 18:43:45 by mchernyu         ###   ########.fr       */
+/*   Updated: 2021/10/07 17:34:35 by mchernyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 size_t	ft_strlen(const char *s)
 {

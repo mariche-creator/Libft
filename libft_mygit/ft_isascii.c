@@ -6,9 +6,11 @@
 /*   By: mchernyu <mchernyu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 05:38:17 by mchernyu          #+#    #+#             */
-/*   Updated: 2021/09/29 18:40:47 by mchernyu         ###   ########.fr       */
+/*   Updated: 2021/10/07 16:43:49 by mchernyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_isascii(int c)
 {

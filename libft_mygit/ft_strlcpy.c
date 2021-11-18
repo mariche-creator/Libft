@@ -6,23 +6,23 @@
 /*   By: mariche <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 05:12:21 by mariche           #+#    #+#             */
-/*   Updated: 2021/09/29 18:51:43 by mchernyu         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:36:51 by mchernyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
-size_t	strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	const size_t	srclen;
+	size_t	srclen;
 
 	srclen = ft_strlen(src);
 	if (srclen + 1 < size)
-		memcpy(dst, src, srclen + 1);
+		ft_memcpy(dst, src, srclen + 1);
 	else if (size > 0)
 	{
-		memcpy(dst, src, size - 1);
-		dst(size - 1) = '\0';
+		ft_memcpy(dst, src, size - 1);
+		dst[size - 1] = '\0';
 	}
 	return (srclen);
 }
