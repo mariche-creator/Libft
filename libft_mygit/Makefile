@@ -12,7 +12,7 @@
 
 NAME = libft.a
 
-SRCS = ft_isdigit.c ft_memset.c ft_isprint.c ft_split.c\
+MAN = ft_isdigit.c ft_memset.c ft_isprint.c ft_split.c\
 ft_strlcat.c ft_strtrim.c ft_strjoin.c ft_substr.c ft_atoi.c\
 ft_itoa.c ft_strlcpy.c ft_tolower.c ft_bzero.c ft_strlen.c\
 ft_strmapi.c ft_toupper.c ft_calloc.c ft_memchr.c ft_isalnum.c\
@@ -23,29 +23,35 @@ ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
 BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c\
 ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
-OBJS = ${SRCS:.c=.o}
+OBJS_MAN = ${patsubst %.c,%.o,${MAN}}
 
-OBJSBONUS =${BONUS:.c=.o}
+OBJS_BONUS =${patsubst %.c,%.o,${BONUS}}
+
+HEADER = ${patsubst %.c,%.d,${MAN} ${BONUS}}
 
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-.c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
-
-$(NAME): ${OBJS}
-	ar rcs ${NAME} ${OBJS}
-
-bonus: ${OBJS} ${OBJSBONUS}
-	ar rcs ${NAME} ${OBJS} ${OBJSBONUS}
-
 all: ${NAME}
 
+$(NAME): ${OBJS_MAN}
+	ar rcs ${NAME} $?
+
+%.o: %.c
+	${CC} ${CFLAGS} -c $< -o $@ -MD
+
+include ${wildcard ${HEADER}}
+
+bonus:
+	make OBJS_MAN="${OBJS_BONUS}" all
+
 clean:
-	rm -f ${OBJS} ${OBJSBONUS}
+	rm -f ${OBJS_MAN} ${OBJS_BONUS} ${HEADER}
 
 fclean: clean
 	rm -f ${NAME}
 
 re: fclean all
+
+.PHONY : all clean fclean re bonus
